@@ -5,7 +5,7 @@ class Bot {
   private constructor(private browser: Browser, private page: Page) {}
 
   static async create() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
 
     return new Bot(browser, page);
@@ -13,7 +13,6 @@ class Bot {
 
   public async execute() {
     await this.page.goto("https://www.nba.com/teams");
-
     const option = await this.menu();
     await this.options(parseInt(option));
   }
@@ -32,969 +31,168 @@ class Bot {
       });
     });
 
+    console.clear();
+    console.log("Escolha o time que você deseja ver o elenco: \n");
+
     for (let index = 0; index < teams.length; index++) {
       console.log(`[${index + 1}] ${teams[index].name}`);
     }
 
-    const optionSelected = readlineSync.keyIn("Digite uma opcao (0 a 30): ", {
-      encoding: "utf-8",
-    });
+    console.log("[0] SAIR\n");
+
+    const optionSelected = readlineSync.question(
+      "Digite uma opcao (0 a 30): ",
+      {
+        encoding: "utf-8",
+      }
+    );
 
     return optionSelected;
   }
 
   private async options(option: number) {
     switch (option) {
-      case 1:
-        this.bostonCeltics();
-        return;
-      case 2:
-        this.brooklynNets();
-        return;
-      case 3:
-        this.newYorkKnicks();
-        return;
-      case 5:
-        this.torontoRaptors();
-        return;
-      case 6:
-        this.chicagoBulls();
-        return;
-      case 7:
-        this.clevelandCavaliers();
-        return;
-      case 8:
-        this.detroitPistons();
-        return;
-      case 9:
-        this.indianaPacers();
-        return;
-      case 10:
-        this.milwaukeeBucks();
-        return;
-      case 12:
-        this.charlotteHornets();
-        return;
-      case 14:
-        this.orlandoMagic();
-        return;
-      case 15:
-        this.washingtonWizards();
-        return;
-      case 16:
-        this.denverNuggets();
-        return;
-      case 17:
-        this.minnesotaTimberwolves();
-        return;
-      case 18:
-        this.oklahomaCityThuder();
-        return;
-      case 19:
-        this.portlandTrailBlazers();
-        return;
-      case 20:
-        this.utahJazz();
-        return;
-      case 21:
-        this.goldenStateWarriors();
-        return;
-      case 22:
-        this.losAngelesClippers();
-        return;
-      case 24:
-        this.phoenixSuns();
-        return;
-      case 25:
-        this.sacramentoKings();
-        return;
-      case 28:
-        this.memphisGrizzlies();
-        return;
-      case 29:
-        this.newOrleansPelicans();
-        return;
-      case 30:
-        this.sanAntonioSpurs();
-        return;
       case 0:
+        await this.browser.close();
+        return;
+      case 1:
+        await this.infosTeam("https://www.nba.com/team/1610612738");
+        break;
+      case 2:
+        await this.infosTeam("https://www.nba.com/team/1610612751");
+        break;
+      case 3:
+        await this.infosTeam("https://www.nba.com/team/1610612752");
+        break;
+      case 4:
+        await this.infosTeam("https://www.nba.com/team/1610612755");
+        break;
+      case 5:
+        await this.infosTeam("https://www.nba.com/team/1610612761");
+        break;
+      case 6:
+        await this.infosTeam("https://www.nba.com/team/1610612741");
+        break;
+      case 7:
+        await this.infosTeam("https://www.nba.com/team/1610612739");
+        break;
+      case 8:
+        await this.infosTeam("https://www.nba.com/team/1610612765");
+        break;
+      case 9:
+        await this.infosTeam("https://www.nba.com/team/1610612754");
+        break;
+      case 10:
+        await this.infosTeam("https://www.nba.com/team/1610612749");
+        break;
+      case 11:
+        await this.infosTeam("https://www.nba.com/team/1610612737");
+        break;
+      case 12:
+        await this.infosTeam("https://www.nba.com/team/1610612766");
+        break;
+      case 13:
+        await this.infosTeam("https://www.nba.com/team/1610612748");
+        break;
+      case 14:
+        await this.infosTeam("https://www.nba.com/team/1610612753");
+        break;
+      case 15:
+        await this.infosTeam("https://www.nba.com/team/1610612764");
+        break;
+      case 16:
+        await this.infosTeam("https://www.nba.com/team/1610612743");
+        break;
+      case 17:
+        await this.infosTeam("https://www.nba.com/team/1610612750");
+        break;
+      case 18:
+        await this.infosTeam("https://www.nba.com/team/1610612760");
+        break;
+      case 19:
+        await this.infosTeam("https://www.nba.com/team/1610612757");
+        break;
+      case 20:
+        await this.infosTeam("https://www.nba.com/team/1610612762");
+        break;
+      case 21:
+        await this.infosTeam("https://www.nba.com/team/1610612744");
+        break;
+      case 22:
+        await this.infosTeam("https://www.nba.com/team/1610612746");
+        break;
+      case 23:
+        await this.infosTeam("https://www.nba.com/team/1610612747");
+        break;
+      case 24:
+        await this.infosTeam("https://www.nba.com/team/1610612756");
+        break;
+      case 25:
+        await this.infosTeam("https://www.nba.com/team/1610612758");
+        break;
+      case 26:
+        await this.infosTeam("https://www.nba.com/team/1610612742");
+        break;
+      case 27:
+        await this.infosTeam("https://www.nba.com/team/1610612745");
+        break;
+      case 28:
+        await this.infosTeam("https://www.nba.com/team/1610612763");
+        break;
+      case 29:
+        await this.infosTeam("https://www.nba.com/team/1610612740");
+        break;
+      case 30:
+        await this.infosTeam("https://www.nba.com/team/1610612759");
+        break;
+      default:
+        console.clear();
+        console.log("\nInforme uma opção válida (0 a 30)\nVoltando ao menu...");
         break;
     }
+
+    await this.execute();
   }
 
-  private async bostonCeltics() {
-    await this.page.goto("https://www.nba.com/celtics/roster");
+  private async infosTeam(url: string) {
+    await this.page.goto(url);
     await this.page.waitForSelector("body");
 
     const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(".roster-wrap .player-wrap");
-
-      return Array.from(divPlayers).map((player) => {
-        const divPlayer = player.querySelector(
-          ".player-wrap-inner"
-        ) as HTMLDivElement;
-        const number = divPlayer.querySelector(
-          ".player-number-wrap .player-number"
-        )?.textContent;
-        const name = divPlayer.querySelector(".player-name")?.textContent;
-
-        return { number, name };
-      });
-    });
-
-    console.log(players);
-    return;
-  }
-
-  private async brooklynNets() {
-    await this.page.goto("https://www.nba.com/nets/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
+      const trPlayers = document.querySelectorAll(
+        ".TeamRoster_content__Owdiz tbody tr"
       );
 
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
+      const positions = {
+        C: "Pivô",
+        F: "Ala",
+        G: "Armador",
+        "G-F": "Armador - Ala",
+        "F-G": "Ala - Armador",
+        "F-C": "Ala - Pivô",
+        "C-F": "Pivô - Ala",
+      };
 
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
+      return Array.from(trPlayers).map((player) => {
+        const tdPlayer = player.querySelectorAll("td");
+        const name = tdPlayer[0].textContent;
+        const number = tdPlayer[1].textContent;
+        const position = tdPlayer[2].textContent;
+        const age = tdPlayer[6].textContent;
+        const translatedPosition = positions[position as string];
 
         return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
+          nome: name,
+          número: number,
+          posição: translatedPosition,
+          idade: age,
         };
       });
     });
 
     console.log(players);
-  }
 
-  private async newYorkKnicks() {
-    await this.page.goto("https://www.nba.com/knicks/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async torontoRaptors() {
-    await this.page.goto("https://www.nba.com/raptors/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async chicagoBulls() {
-    await this.page.goto("https://www.nba.com/bulls/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async clevelandCavaliers() {
-    await this.page.goto("https://www.nba.com/cavaliers/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async detroitPistons() {
-    await this.page.goto("https://www.nba.com/pistons/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async indianaPacers() {
-    await this.page.goto("https://www.nba.com/pacers/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async milwaukeeBucks() {
-    await this.page.goto("https://www.nba.com/bucks/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async charlotteHornets() {
-    await this.page.goto("https://www.nba.com/pacers/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async orlandoMagic() {
-    await this.page.goto("https://www.nba.com/magic/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async washingtonWizards() {
-    await this.page.goto("https://www.nba.com/wizards/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async denverNuggets() {
-    await this.page.goto("https://www.nba.com/nuggets/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async minnesotaTimberwolves() {
-    await this.page.goto("https://www.nba.com/timberwolves/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async oklahomaCityThuder() {
-    await this.page.goto("https://www.nba.com/thunder/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async portlandTrailBlazers() {
-    await this.page.goto("https://www.nba.com/blazers/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async utahJazz() {
-    await this.page.goto("https://www.nba.com/jazz/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async goldenStateWarriors() {
-    await this.page.goto("https://www.nba.com/warriors/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async losAngelesClippers() {
-    await this.page.goto("https://www.nba.com/clippers/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async phoenixSuns() {
-    await this.page.goto("https://www.nba.com/suns/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async sacramentoKings() {
-    await this.page.goto("https://www.nba.com/kings/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async memphisGrizzlies() {
-    await this.page.goto("https://www.nba.com/grizzlies/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async newOrleansPelicans() {
-    await this.page.goto("https://www.nba.com/pelicans/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
-  }
-
-  private async sanAntonioSpurs() {
-    await this.page.goto("https://www.nba.com/suns/roster");
-    await this.page.waitForSelector("body");
-
-    const players = await this.page.evaluate(() => {
-      const divPlayers = document.querySelectorAll(
-        ".Roster_rosterPlayers__FmXl3 .player-card"
-      );
-
-      return Array.from(divPlayers).map((player) => {
-        const number = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoNum__C_dbB"
-        )?.textContent;
-
-        const position = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkInfoPosition__tmYvI"
-        )?.textContent;
-
-        const firstName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkFirstName__7oSMr"
-        )?.textContent;
-
-        const lastName = player.querySelector(
-          ".Player_playerLinkInfo__dO0Sc .Player_playerLinkLastName__c4wBU"
-        )?.textContent;
-
-        return {
-          numero: number,
-          posição: position,
-          nome: `${firstName} ${lastName}`,
-        };
-      });
-    });
-
-    console.log(players);
+    readlineSync.keyIn("\nDigite qualquer tecla para voltar ao menu: ");
   }
 }
 
