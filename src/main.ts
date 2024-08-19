@@ -148,6 +148,7 @@ class Bot {
       default:
         console.clear();
         console.log("\nInforme uma opção válida (0 a 30)\nVoltando ao menu...");
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         break;
     }
 
