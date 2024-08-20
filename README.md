@@ -6,7 +6,7 @@ Esse projeto consiste em uma automação que fornece informações dos elencos d
 
 Todas as informações são retiradas do site oficial da [NBA](https://www.nba.com/). Para efetuar o acesso ao site é utilizado a biblioteca de web scrapping [Puppeteer](https://pptr.dev/) e os registros de input do usuário ficam por conta da lib [Readline-Sync](https://github.com/anseki/readline-sync).
 
-## Próxs. funcionalidades
+## Próxs. funcionalidades ⚙️
 
 - Possibilidade de ver as próximas partidas de cada time.
 - Possibilidade de ver a comissão técnica de cada time.
